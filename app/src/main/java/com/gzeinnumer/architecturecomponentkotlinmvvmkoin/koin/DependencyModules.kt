@@ -1,4 +1,4 @@
-package com.gzeinnumer.architecturecomponentkotlinmvvmkoin.utils
+package com.gzeinnumer.architecturecomponentkotlinmvvmkoin.koin
 
 import com.gzeinnumer.architecturecomponentkotlinmvvmkoin.data.local.MyDatabase
 import com.gzeinnumer.architecturecomponentkotlinmvvmkoin.ui.main.MainVM

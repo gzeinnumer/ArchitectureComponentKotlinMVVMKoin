@@ -1,7 +1,7 @@
 package com.gzeinnumer.architecturecomponentkotlinmvvmkoin
 
 import android.app.Application
-import com.gzeinnumer.architecturecomponentkotlinmvvmkoin.utils.DependencyModules
+import com.gzeinnumer.architecturecomponentkotlinmvvmkoin.koin.DependencyModules
 import org.koin.android.ext.android.startKoin
 
 class MyApp: Application(){
