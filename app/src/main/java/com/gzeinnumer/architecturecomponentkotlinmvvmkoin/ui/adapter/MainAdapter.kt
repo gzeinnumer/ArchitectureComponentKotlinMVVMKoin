@@ -5,41 +5,37 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.gzeinnumer.architecturecomponentkotlinmvvmkoin.R
-import com.gzeinnumer.architecturecomponentkotlinmvvmkoin.data.model.Phrase
-import kotlinx.android.synthetic.main.row_phrase.view.*
+import com.gzeinnumer.architecturecomponentkotlinmvvmkoin.network.model.CategoriesItem
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.list_item.view.*
 
-class MainAdapter(private val data: ArrayList<Phrase> = arrayListOf()):
+class MainAdapter(private val item: List<CategoriesItem>,
+                  private val listener: (CategoriesItem) -> Unit):
     RecyclerView.Adapter<MainAdapter.MyHolder>(){
 
-    override fun onCreateViewHolder(p0: ViewGroup, p1: Int): MyHolder {
-        val itemView = LayoutInflater.from(p0.context)
-            .inflate(R.layout.row_phrase, p0, false)
-
-        return MyHolder(
-            itemView
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        MyHolder(
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.list_item,
+                parent,
+                false
+            )
         )
-    }
 
-    override fun getItemCount(): Int = data.size
+    override fun getItemCount(): Int = item.size
 
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
-        holder.bind( data[position])
+        holder.bindItem(item[position], listener)
     }
 
-    fun add(phrase: Phrase){
-        data.add( phrase)
-        notifyDataSetChanged()
-    }
+    class MyHolder(view: View) : RecyclerView.ViewHolder(view) {
+        fun bindItem(categoriesItem: CategoriesItem, listener: (CategoriesItem) -> Unit) {
+            itemView.tvTitle.text = categoriesItem.strCategory
+            itemView.tvDeskripsi.text = categoriesItem.strCategoryDescription
+            Picasso.get().load(categoriesItem.strCategoryThumb).into(itemView.ivImage)
 
-    fun addAll(phrases: List<Phrase>){
-        data.addAll( phrases)
-        notifyDataSetChanged()
-    }
-
-    class MyHolder(private val v: View): RecyclerView.ViewHolder(v){
-        fun bind(item: Phrase){
-            with(v){
-                tv_phrase.text = item.text
+            itemView.setOnClickListener {
+                listener(categoriesItem)
             }
         }
     }

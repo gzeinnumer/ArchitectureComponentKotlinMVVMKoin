@@ -4,13 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.gzeinnumer.architecturecomponentkotlinmvvmkoin.data.model.Phrase
+import com.gzeinnumer.architecturecomponentkotlinmvvmkoin.network.model.CategoriesItem
 
-@Database(entities = [Phrase::class], version = 1)
+@Database(entities = [CategoriesItem::class], version = 1)
 abstract class MyDatabase: RoomDatabase() {
 
-    abstract fun phraseDao(): PhraseDao
-
+    abstract fun categoriesDao(): CategoriesDao
 
     companion object {
 

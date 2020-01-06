@@ -1,7 +1,9 @@
 package com.gzeinnumer.architecturecomponentkotlinmvvmkoin
 
 import android.app.Application
-import com.gzeinnumer.architecturecomponentkotlinmvvmkoin.koin.DependencyModules
+import com.gzeinnumer.architecturecomponentkotlinmvvmkoin.koin.appModules
+import com.gzeinnumer.architecturecomponentkotlinmvvmkoin.koin.networkModule
+import com.gzeinnumer.architecturecomponentkotlinmvvmkoin.koin.repositoryModule
 import org.koin.android.ext.android.startKoin
 
 class MyApp: Application(){
@@ -10,7 +12,9 @@ class MyApp: Application(){
         super.onCreate()
 
         startKoin(this, listOf(
-                DependencyModules.appModules
+                appModules,
+                networkModule,
+                repositoryModule
         ) )
     }
 }
